@@ -1,5 +1,5 @@
 import { create, all } from 'mathjs'
-import { debug } from 'logger'
+import { debug } from '@pkm_kailow/logger'
 import { transpose } from './utils'
 
 const search = (searchTerm: string, searchString: string) => {
