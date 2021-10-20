@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "lib": ["es2020"],
+    "noImplicitAny": true,
+    "strict": true,
+    "outDir": "dist",
+    "declaration": true,
+    "sourceMap": false
+  }
+}
