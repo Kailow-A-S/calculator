@@ -2,11 +2,19 @@ import { create, all } from 'mathjs'
 import { debug } from '@pkm_kailow/logger'
 import { transpose } from './utils'
 
-const search = (searchTerm: string, searchString: string) => {
+const search = (searchTerm: string, searchString: string): number => {
   return searchString.search(searchTerm)
 }
 
-const vlookup = (searchTerm: any, matrix: { _data: (string | number | boolean)[][] }, column: any) => {
+const ceiling = (input: number, roundUpToNearest: number): number => {
+  let result = input
+  while (result % roundUpToNearest !== 0) {
+    result++
+  }
+  return result
+}
+
+const vlookup = (searchTerm: any, matrix: { _data: (string | number | boolean)[][] }, column: any): any => {
   const transposed = transpose(matrix._data)
   const row = transposed.find(col => col[0] == searchTerm)
 
@@ -25,7 +33,7 @@ const vlookup = (searchTerm: any, matrix: { _data: (string | number | boolean)[]
   return 0
 }
 
-const countif = (matrix: { _data: (string | number | boolean)[][] }, condition: any) => {
+const countif = (matrix: { _data: (string | number | boolean)[][] }, condition: any): number => {
   let count = 0
   matrix._data.forEach(col => {
     col.forEach(row => {
@@ -36,7 +44,7 @@ const countif = (matrix: { _data: (string | number | boolean)[][] }, condition: 
   return count
 }
 
-const debugPrint = (input: any) => {
+const debugPrint = (input: any): any => {
   debug(input)
   return input
 }
@@ -47,6 +55,7 @@ math.import!({
   search,
   vlookup,
   countif,
+  ceiling,
   debugPrint,
 }, {})
 
