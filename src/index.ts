@@ -1,4 +1,4 @@
-import { create, all } from 'mathjs'
+import { create, all, MathJsStatic } from 'mathjs'
 import { debug } from '@pkm_kailow/logger'
 import { transpose } from './utils'
 
@@ -44,6 +44,15 @@ const countif = (matrix: { _data: (string | number | boolean)[][] }, condition: 
   return count
 }
 
+const ifError = (args: any[], math: MathJsStatic, scope: any) => {
+  try {
+    return math.evaluate(args[0], scope)
+  } catch (err) {
+    return math.evaluate(args[1], scope)
+  }
+}
+ifError.rawArgs = true
+
 const debugPrint = (input: any): any => {
   debug(input)
   return input
@@ -57,6 +66,7 @@ math.import!({
   countif,
   ceiling,
   debugPrint,
+  ifError,
 }, {})
 
 export default math
