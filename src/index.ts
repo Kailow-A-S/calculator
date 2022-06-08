@@ -1,7 +1,6 @@
 import { create, all, MathJsStatic } from 'mathjs'
 import { debug } from '@pkm_kailow/logger'
 import { transpose } from './utils'
-import math = require('mathjs')
 
 const search = (searchTerm: string, searchString: string): number => {
   return searchString.search(searchTerm)
