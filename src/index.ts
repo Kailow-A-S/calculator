@@ -1,6 +1,7 @@
 import { create, all, MathJsStatic } from 'mathjs'
 import { debug } from '@pkm_kailow/logger'
 import { transpose } from './utils'
+import math = require('mathjs')
 
 const search = (searchTerm: string, searchString: string): number => {
   return searchString.search(searchTerm)
@@ -44,11 +45,11 @@ const countif = (matrix: { _data: (string | number | boolean)[][] }, condition: 
   return count
 }
 
-const ifError = (args: any[], math: MathJsStatic, scope: any) => {
+const ifError = (args: math.MathNode[], math: MathJsStatic, scope: any) => {
   try {
-    return math.evaluate(args[0], scope)
+    return args[0].compile().evaluate(scope)
   } catch (err) {
-    return math.evaluate(args[1], scope)
+    return args[1].compile().evaluate(scope)
   }
 }
 ifError.rawArgs = true
